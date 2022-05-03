@@ -8,44 +8,56 @@ using std::ifstream;
 using std::string;
 using std::vector;
 
-vector<int> ParseLine(string line) {
-    vector<int> integerStream;
+enum class State {kEmpty, kObstacle};
+
+string CellString(State cellState){
+  switch (cellState) {
+    case State::kEmpty : return "0";
+    case State::kObstacle : return "⛰️";
+  }
+}
+
+vector<State> ParseLine(string line) {
+    vector<State> row;
     int n; 
     char c;
     std::istringstream stream(line);
 
 
     while (stream >> n >> c) {
-        integerStream.push_back(n);
+        if (n == 0) { row.push_back(State::kEmpty); }
+        else { row.push_back(State::kObstacle); }
     }
 
-    return integerStream;
+    return row;
 }
 
-void ReadBoardFile(string path) {
+vector<vector<State>> ReadBoardFile(string path) {
+  vector<vector<State>> parsedLine;
   ifstream myfile (path);
   if (myfile) {
     string line;
     while (getline(myfile, line)) {
-      cout << line << "\n";
+      parsedLine.push_back(ParseLine(line));
     }
   }
+  return parsedLine;
 }
 
-void PrintBoard(const vector<vector<int>> board) {
+void PrintBoard(const vector<vector<State>> board) {
   for (int i = 0; i < board.size(); i++) {
-    for (int j = 0; j < board[i].size(); j++) {
-      cout << board[i][j];
+    for (int j = 0; j < board[i].size(); j++)  {
+      cout << CellString(board[i][j]);
     }
     cout << "\n";
   }
 }
 
-#include "test.cpp" // For testing.
+// #include "test.cpp" // For testing.
 
 int main() {
-  ReadBoardFile("1.board");
-  TestParseLine(); // For testing.
+  auto board = ReadBoardFile("1.board");
+  // TestParseLine(); // For testing.
   // Leave commented out.
-  // PrintBoard(board);
+   PrintBoard(board);
 }
