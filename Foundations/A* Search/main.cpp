@@ -10,12 +10,17 @@ using std::string;
 using std::vector;
 using std::abs;
 
-enum class State {kEmpty, kObstacle};
+enum class State {kEmpty, kObstacle, kClosed};
 
 vector<vector<State>> Search(vector<vector<State>> board, vector<int> start, vector<int> goal) {
   vector<vector<State>> minPath;
   cout << "No Path found!";
   return minPath;
+}
+
+int Heuristic(int x1, int y1, int x2, int y2) {
+  int manhattanDist = abs(x2 - x1) + abs(y2 - y1);
+  return manhattanDist;
 }
 
 vector<State> ParseLine(string line) {
@@ -47,12 +52,17 @@ vector<vector<State>> ReadBoardFile(string path) {
   return board;
 }
 
-// TODO: Write the Search function stub here.
+void AddToOpen(vector<vector<int>> &open, vector<vector<State>> board, int x, int y, int g, int h) {
+  vector<int> node{x, y, g, h};
+  open.push_back(node);
+  CellString(board[x][y]);
+}
 
 
 string CellString(State cell) {
   switch(cell) {
     case State::kObstacle: return "⛰️   ";
+    case State::kClosed: return "#";
     default: return "0   "; 
   }
 }
@@ -67,14 +77,16 @@ void PrintBoard(const vector<vector<State>> board) {
   }
 }
 
+#include "test.cpp" // For testing solution
 
 int main() {
   // TODO: Declare "init" and "goal" arrays with values {0, 0} and {4, 5} respectively.
   vector<int> init{0,0};
   vector<int> goal{4,5};
   auto board = ReadBoardFile("1.board");
-  // TODO: Call Search with "board", "init", and "goal". Store the results in the variable "solution".
-  vector<vector<State>> solution = Search(board, init, goal);
-  // TODO: Change the following line to pass "solution" to PrintBoard.
+  auto solution = Search(board, init, goal);
   PrintBoard(solution);
+  // Tests
+  TestHeuristic();
+  TestAddToOpen();
 }
