@@ -12,16 +12,6 @@ using std::abs;
 
 enum class State {kEmpty, kObstacle, kClosed};
 
-vector<vector<State>> Search(vector<vector<State>> board, vector<int> start, vector<int> goal) {
-  vector<vector<State>> minPath;
-  cout << "No Path found!";
-  return minPath;
-}
-
-int Heuristic(int x1, int y1, int x2, int y2) {
-  int manhattanDist = abs(x2 - x1) + abs(y2 - y1);
-  return manhattanDist;
-}
 
 vector<State> ParseLine(string line) {
     istringstream sline(line);
@@ -52,17 +42,41 @@ vector<vector<State>> ReadBoardFile(string path) {
   return board;
 }
 
-void AddToOpen(vector<vector<int>> &open, vector<vector<State>> board, int x, int y, int g, int h) {
-  vector<int> node{x, y, g, h};
-  open.push_back(node);
-  CellString(board[x][y]);
+
+// Calculate the manhattan distance
+int Heuristic(int x1, int y1, int x2, int y2) {
+  return abs(x2 - x1) + abs(y2 - y1);
 }
 
+
+/** 
+ * Add a node to the open list and mark it as open. 
+ */
+void AddToOpen(int x, int y, int g, int h, vector<vector<int>> &openlist, vector<vector<State>> &grid) {
+  // Add node to open vector, and mark grid cell as closed.
+  openlist.push_back(vector<int>{x, y, g, h});
+  grid[x][y] = State::kClosed;
+}
+
+
+/** 
+ * Implementation of A* search algorithm
+ */
+vector<vector<State>> Search(vector<vector<State>> grid, int init[2], int goal[2]) {
+  // Create the vector of open nodes.
+  vector<vector<int>> open {};
+  
+  // TODO: Initialize the starting node. 
+  
+  // TODO: Use AddToOpen to add the starting node to the open vector.
+
+  cout << "No path found!" << "\n";
+  return std::vector<vector<State>>{};
+}
 
 string CellString(State cell) {
   switch(cell) {
     case State::kObstacle: return "⛰️   ";
-    case State::kClosed: return "#";
     default: return "0   "; 
   }
 }
@@ -77,12 +91,11 @@ void PrintBoard(const vector<vector<State>> board) {
   }
 }
 
-#include "test.cpp" // For testing solution
+#include "test.cpp"
 
 int main() {
-  // TODO: Declare "init" and "goal" arrays with values {0, 0} and {4, 5} respectively.
-  vector<int> init{0,0};
-  vector<int> goal{4,5};
+  int init[2]{0, 0};
+  int goal[2]{4, 5};
   auto board = ReadBoardFile("1.board");
   auto solution = Search(board, init, goal);
   PrintBoard(solution);
