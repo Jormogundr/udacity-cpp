@@ -2,41 +2,42 @@
 #include <assert.h>
 
 // Declare class Rectangle
-class Rectangle {
-    friend class Square;
-    private:
-        int height_;
-        int width_;
-};
-
+class Rectangle;
 
 // Define class Square as friend of Rectangle
 class Square {
-    public:
-        class Recatngle;
-        Square(int s)  {side_ = 4;}
-    private:
-        int side_;
+// Add public constructor to Square, initialize side
+public:
+    Square(int s) : side(s) {}
+
+private:
+    // Add friend class Rectangle
+    friend class Rectangle;
+    // Add private attribute side to Square
+    int side;
 };
 
 // Define class Rectangle
 class Rectangle {
-    public:
-        Area() {}
-    private:
-        int width_;
-        int height_;
+// Add public functions to Rectangle: area() and convert()
+public:
+    Rectangle(const Square& a);
+    int Area() const;
+
+private:
+    // Add private attributes width, height
+    int width {0};
+    int height {0};
 };
-    // Add public function to Rectangle: Area()
-    
-    // Add private attributes width, height;
 
 // Define a Rectangle constructor that takes a Square
-Rectangle::Rectangle(Square square)
+Rectangle::Rectangle(const Square& a) : width(a.side), height(a.side) {}
 
 // Define Area() to compute area of Rectangle
-
-
+int Rectangle::Area() const
+{
+    return width * height;
+}
 
 // Update main() to pass the tests
 int main()
