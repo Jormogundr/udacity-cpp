@@ -8,6 +8,11 @@
 #include "graphedge.h"
 #include "chatbot.h"
 
+
+// add set( CMAKE_CXX_FLAGS "-g " ) to CmakeLists.txt
+// cd build && cmake - DCMAKE_BUILD_TYPE=Debug .. && make
+// see Ahmed Fathy's response here https://knowledge.udacity.com/questions/554891
+
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
