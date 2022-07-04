@@ -36,30 +36,6 @@ wx/wx.h
 memory
 -
 
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/chatlogic.cpp
-fstream
--
-sstream
--
-iostream
--
-vector
--
-iterator
--
-tuple
--
-algorithm
--
-graphedge.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphedge.h
-graphnode.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphnode.h
-chatbot.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/chatbot.h
-chatlogic.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/chatlogic.h
-
 /home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/chatlogic.h
 vector
 -
@@ -70,23 +46,11 @@ string
 chatgui.h
 /home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/chatgui.h
 
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphedge.cpp
-graphnode.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphnode.h
-graphedge.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphedge.h
-
 /home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphedge.h
 vector
 -
 string
 -
-
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphnode.cpp
-graphedge.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphedge.h
-graphnode.h
-/home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphnode.h
 
 /home/nate/udacity-cpp/Memory-Management/CppND-Memory-Management-Chatbot-master/src/graphnode.h
 vector
